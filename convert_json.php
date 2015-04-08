@@ -1,8 +1,19 @@
-<?php
 
-// Start the session
+
+<?php
 session_start();
+
+// kill the page if the access variable doesn't exists
+//            or if the access variable does exist but is not set to true
+if(!isset($_SESSION['can_access']) || (isset($_SESSION['can_access']) && $_SESSION['can_access'] !== true))
+{
+   die('You cannot directly access this page!'); // kill the page display error
+}
+if($_SESSION['role1'] == "user")
+{die(" Access denied");
+}
 ?>
+
 <?php
 //Create Database connection
 
@@ -80,7 +91,6 @@ $(document).ready(function(){
 	    
 		
 		});
-		window.location.replace("convert_json2.php");
         });
 });
 </script>
@@ -133,7 +143,7 @@ function functionName() {
   
 }
 function functionName1() {
- top.frame2.location.href = 'zoomable_sunburst.php';
+ top.frame2.location.href = 'sunburst.php';
  }
  
  function functionName2() {
@@ -201,7 +211,7 @@ if (isset($_POST["points"])) {
    $file = fopen($file2,'w+');
    fwrite($file, $json);
    fclose($file);
-    $file3=mysql_query("INSERT INTO `json`(`id`,`name`,`visname`,`attributes`,`status`) VALUES ('".$file1."','".$file2."','".$tableName."','".$data1."','active')");
+    $file3=mysql_query("INSERT INTO `json`(`id`,`name`,`visname`,`attributes`) VALUES ('".$file1."','".$file2."','".$tableName."','".$data1."')");
 }
 $_SESSION["file2"]=$file2;
 
