@@ -9,7 +9,7 @@ $role2=$_GET['status'];
 echo $role2;
  
 
- $subject="Role change";
+ $subject="Role Change";
 $message="VIZUALIZATION,\n\nhi\n\n Dear user this is to inform to that your role has been updated to $role2\n\n Thank You.";
 $headers = 'From: admin@gmail.com \r\n';
 
