@@ -4,7 +4,7 @@ session_start();
 
 // kill the page if the access variable doesn't exists
 //            or if the access variable does exist but is not set to true
-if(!isset($_SESSION['can_access']) || (isset($_SESSION['can_access']) && $_SESSION['can_access'] !== true)|| (isset($_SESSION['can_access']) &&isset($_SESSION['sadmin'])&& $_SESSION['sadmin'] !== true&&isset($_SESSION['admin'])&& $_SESSION['admin']!==true && isset($_SESSION['user'])&&$_SESSION['user']!==true)){
+if(!isset($_SESSION['can_access']) || (isset($_SESSION['can_access']) && $_SESSION['can_access'] !== true)) {
    die('You cannot directly access this page!'); // kill the page display error
 }
 ?>
@@ -69,209 +69,192 @@ if(!isset($_SESSION['can_access']) || (isset($_SESSION['can_access']) && $_SESSI
 				
 				
 <?php
-if(isset($_SESSION['can_access']) &&isset($_SESSION['sadmin'])&& $_SESSION['sadmin']== true)
+if(isset($_SESSION['can_access']) &&$_SESSION['role1']=="superadmin")
 {
-	
-              //  <!-- Main content -->
-              echo'  <section class="content">';
+	?>
+               <!-- Main content -->
+               <section class="content">
 
-                  //  <!-- Small boxes (Stat box) -->
-                 echo'   <div class="row">';
+                   <!-- Small boxes (Stat box) -->
+                   <div class="row">
 				
-                       echo' <div class="col-lg-3 col-xs-6">';
-                          //  <!-- small box -->
-                           echo' <div class="small-box bg-aqua">';
-                               echo' <div class="inner">';
-                                   echo' <h3>
-                                        UPLOAD
-                                    </h3>';
-                                  echo'  <p>
-                                        CSV File
-                                    </p>';
-                              echo'  </div>';
-                               echo' <div class="icon">';
-                                echo'    <i class="ion ion-bag"></i>';
-                                echo'</div>';
-                              echo'  <a href="upload.php" class="small-box-footer">';
-                                  echo'  upload <i class="fa fa-arrow-circle-right"></i>';
-                             echo'   </a>';
-                           echo' </div>';
-                       echo' </div><!-- ./col -->';
-                       echo' <div class="col-lg-3 col-xs-6">';
-                           // <!-- small box -->
-                           echo' <div class="small-box bg-green">';
-                               echo' <div class="inner">';
-                                   echo' <h3>
+                        <div class="col-lg-3 col-xs-6">
+                           <!-- small box -->
+                            <div class="small-box bg-aqua">
+                               <div class="inner">
+                                   <h3> UPLOAD</h3>
+                                   <p>CSV File</p>
+                                        
+                                     </div>
+                                <div class="icon">
+                                <i class="ion ion-bag"></i>
+                                </div>
+                                <a href="upload.php" class="small-box-footer">
+                                  <i class="fa fa-arrow-circle-right"></i>
+                              </a>
+                            </div>
+                        </div><!-- ./col -->
+                      <div class="col-lg-3 col-xs-6">
+                           <!-- small box -->
+                            <div class="small-box bg-green">
+                               <div class="inner">
+                                    <h3>
                                         VIEW<sup style="font-size: 20px"></sup>
-                                    </h3>';
-                                   echo' <p>
+                                    </h3>
+                                    <p>
                                        Uploaded File 
-                                    </p>';
-                               echo' </div>';
-                              echo'  <div class="icon">';
-                                    echo'<i class="ion ion-stats-bars"></i>';
-                              echo'  </div>';
-                               echo' <a href="viewupload.php" class="small-box-footer">';
-                                 echo'   view <i class="fa fa-arrow-circle-right"></i>';
-                             echo'   </a>';
-                           echo' </div>';
-                       echo' </div>'; //<!-- ./col -->
-                        echo'<div class="col-lg-3 col-xs-6">';
-                         echo'   <!-- small box -->';
-                          echo'  <div class="small-box bg-yellow">';
-                                echo'<div class="inner">';
-                                    echo'<h3>
+                                    </p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-stats-bars"></i>
+                               </div>
+                               <a href="viewupload.php" class="small-box-footer">
+                                    view <i class="fa fa-arrow-circle-right"></i>
+                              </a>
+                            </div>
+                        </div><!-- ./col -->
+                        <div class="col-lg-3 col-xs-6">
+                         <!-- small box -->
+                            <div class="small-box bg-yellow">
+                                <div class="inner">
+                                    <h3>
                                         Report
-                                    </h3>';
-                                   echo' <p>
+                                    </h3>
+                                   <p>
                                         VIEW
-                                   </p>';
-                               echo' </div>';
-                              echo' <div class="icon">';
-                                   echo' <i class="ion ion-pie-graph "></i>';
-                              echo'  </div>';
-                              echo'  <a href="existing_visuals.php" class="small-box-footer">';
-										echo'View<i class="fa fa-arrow-circle-right"></i>';
-                               echo' </a>';
-                           echo' </div>';
-                       echo' </div>';//<!-- ./col -->
+                                   </p>
+                                </div>
+                               <div class="icon">
+                                    <i class="ion ion-pie-graph "></i>
+                                </div>
+                               <a href="existing_visuals.php" class="small-box-footer">
+										View<i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                       </div><!-- ./col -->
 						 
-						echo'<div class="col-lg-3 col-xs-6">';
-                           // <!-- small box -->
-                            echo'<div class="small-box bg-red">';
-                                echo'<div class="inner">';
-                                 echo'   <h3>
-                                       Update
-                                   </h3>';
-                                   echo' <p>
-                                        Role
-                                    </p>';
-                             echo'   </div>';
-                               echo' <div class="icon">';
-                                    echo'<i class="ion ion-person-add"></i>';
-                               echo' </div>';
-                               echo' <a href="change_role.php" class="small-box-footer">';
-                               echo'     Check <i class="fa fa-arrow-circle-right"></i>';
-                             echo'   </a>';
-                            echo'</div>';
-                        echo'</div>';//<!-- ./col -->";
-}
-						elseif(isset($_SESSION['can_access']) &&isset($_SESSION['admin'])&& $_SESSION['admin']== true)
-						{
-							 //  <!-- Main content -->
-              echo'  <section class="content">';
+						
+						<?php
+} 
+					 elseif(isset($_SESSION['can_access']) &&$_SESSION['role1']=="admin")
+						{ ?>
+							   <!-- Main content -->
+                <section class="content">
 
-                  //  <!-- Small boxes (Stat box) -->
-                 echo'   <div class="row">';
+                   <!-- Small boxes (Stat box) -->
+                    <div class="row">
 				
-                       echo' <div class="col-lg-3 col-xs-6">';
-                          //  <!-- small box -->
-                           echo' <div class="small-box bg-aqua">';
-                               echo' <div class="inner">';
-                                   echo' <h3>
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-aqua">
+                               <div class="inner">
+                                    <h3>
                                         UPLOAD
-                                    </h3>';
-                                  echo'  <p>
+                                    </h3>
+                                   <p>
                                         CSV File
-                                    </p>';
-                              echo'  </div>';
-                               echo' <div class="icon">';
-                                echo'    <i class="ion ion-bag"></i>';
-                                echo'</div>';
-                              echo'  <a href="upload.php" class="small-box-footer">';
-                                  echo'  upload <i class="fa fa-arrow-circle-right"></i>';
-                             echo'   </a>';
-                           echo' </div>';
-                       echo' </div><!-- ./col -->';
-                       echo' <div class="col-lg-3 col-xs-6">';
-                           // <!-- small box -->
-                           echo' <div class="small-box bg-green">';
-                               echo' <div class="inner">';
-                                   echo' <h3>
+                                    </p>
+                               </div>
+                                <div class="icon">
+                                   <i class="ion ion-bag"></i>
+                                </div>
+                                <a href="upload.php" class="small-box-footer">
+                                   upload <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div><!-- ./col -->
+                       <div class="col-lg-3 col-xs-6">
+                           <!-- small box -->
+                            <div class="small-box bg-green">
+                                <div class="inner">
+                                    <h3>
                                         VIEW<sup style="font-size: 20px"></sup>
-                                    </h3>';
-                                   echo' <p>
+                                    </h3>
+                                   <p>
                                        Uploaded File 
-                                    </p>';
-                               echo' </div>';
-                              echo'  <div class="icon">';
-                                    echo'<i class="ion ion-stats-bars"></i>';
-                              echo'  </div>';
-                               echo' <a href="viewupload.php" class="small-box-footer">';
-                                 echo'   view <i class="fa fa-arrow-circle-right"></i>';
-                             echo'   </a>';
-                           echo' </div>';
-                       echo' </div>'; //<!-- ./col -->
-                        echo'<div class="col-lg-3 col-xs-6">';
-                         echo'   <!-- small box -->';
-                          echo'  <div class="small-box bg-yellow">';
-                                echo'<div class="inner">';
-                                    echo'<h3>
+                                    </p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-stats-bars"></i>
+                               </div>
+                                <a href="viewupload.php" class="small-box-footer">
+                                    view <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                       </div><!-- ./col -->
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                           <div class="small-box bg-yellow">
+                                <div class="inner">
+                                    <h3>
                                         Report
-                                    </h3>';
-                                   echo' <p>
+                                    </h3>
+                                   <p>
                                         VIEW
-                                   </p>';
-                               echo' </div>';
-                              echo' <div class="icon">';
-                                   echo' <i class="ion ion-pie-graph "></i>';
-                              echo'  </div>';
-                              echo'  <a href="existing_visuals.php" class="small-box-footer">';
-										echo'View<i class="fa fa-arrow-circle-right"></i>';
-                               echo' </a>';
-                           echo' </div>';
-                       echo' </div>';//<!-- ./col -->
-							
+                                   </p>
+                               </div>
+                              <div class="icon">
+                                    <i class="ion ion-pie-graph "></i>
+                                </div>
+                               <a href="existing_visuals.php" class="small-box-footer">
+										View<i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                       </div><!-- ./col -->
+						<?php	
 						}
-						else if(isset($_SESSION['can_access']) &&isset($_SESSION['user'])&& $_SESSION['user']== true)
+						
+						
+						elseif(isset($_SESSION['can_access']) &&$_SESSION['role1']=="user")
 						{
-			//  <!-- Main content -->
-              echo'  <section class="content">';
+						?>
+		 <!-- Main content -->
+                <section class="content">
 
-                  //  <!-- Small boxes (Stat box) -->
-                 echo'   <div class="row">';
+                   <!-- Small boxes (Stat box) -->
+                    <div class="row">
 				
 
-                        echo'<div class="col-lg-3 col-xs-6">';
-                         echo'   <!-- small box -->';
-                          echo'  <div class="small-box bg-yellow">';
-                                echo'<div class="inner">';
-                                    echo'<h3>
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-yellow">
+                                <div class="inner">
+                                    <h3>
                                         Report
-                                    </h3>';
-                                   echo' <p>
+                                    </h3>
+                                    <p>
                                         VIEW
-                                   </p>';
-                               echo' </div>';
-                              echo' <div class="icon">';
-                                   echo' <i class="ion ion-pie-graph "></i>';
-                              echo'  </div>';
-                              echo'  <a href="existing_visuals.php" class="small-box-footer">';
-										echo'View<i class="fa fa-arrow-circle-right"></i>';
-                               echo' </a>';
-                           echo' </div>';
-                       echo' </div>';//<!-- ./col -->
+                                   </p>
+                                </div>
+                               <div class="icon">
+                                   <i class="ion ion-pie-graph "></i>
+                               </div>
+                              <a href="existing_visuals.php" class="small-box-footer">
+										View<i class="fa fa-arrow-circle-right"></i>
+                               </a>
+                            </div>
+                       </div><!-- ./col -->
 					   
-					   echo' <div class="col-lg-3 col-xs-6">';
-                           echo'  <!-- small box -->';
-                            echo' <div class="small-box bg-green">';
-                             echo'    <div class="inner">';
-                              echo'       <h3>';
-                               echo'          Request<sup style="font-size: 20px"></sup>';
-                               echo'      </h3>';
-                                echo'     <p>';
-                                 echo'       Report ';
-                                 echo'    </p>';
-                                 echo'</div>';
-                                echo' <div class="icon">';
-                                echo'     <i class="ion ion-stats-bars"></i>';
-                                echo' </div>';
-                                echo' <a href="req_mail.php" class="small-box-footer">';
-                                echo'     Request <i class="fa fa-arrow-circle-right"></i>';
-                                echo' </a>';
-                            echo' </div>';
-                        echo' </div>';
-                       
+					    <div class="col-lg-3 col-xs-6">
+                             <!-- small box -->
+                             <div class="small-box bg-green">
+                             <div class="inner">
+                                     <h3>
+                                    Request<sup style="font-size: 20px"></sup>
+                                     </h3>
+                                     <p>
+                                        Report 
+                                    </p>
+                                </div>
+                                <div class="icon">
+                                  <i class="ion ion-stats-bars"></i>
+                                 </div>
+                                <a href="req_mail.php" class="small-box-footer">
+                                 Request <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                             </div>
+                        </div>
+                       <?php
                    
                    
 
