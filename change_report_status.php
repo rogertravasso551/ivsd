@@ -8,6 +8,9 @@ if(!isset($_SESSION['can_access']) || (isset($_SESSION['can_access']) && $_SESSI
 {
    die('You cannot directly access this page!'); // kill the page display error
 }
+if($_SESSION['role1'] !== "superadmin")
+{die(" Access denied");
+}
 ?>
 <html>
     <head>
@@ -200,34 +203,35 @@ $start=0;
 		
 		$i++;
 	}
-	echo'<div style="height:500px;width:800px;">';
-	echo'<table cellpadding="3px" style="border:1px solid;border: 1px solid;border-color: lightgrey;width: 99%;;height:100px;">';
-echo'<tr style="background-color: #367fa9;font-size: 19px;font-family: cursive;color-rendering: optimizeQuality;color: #fff;">';
-	echo'<td style="padding-left: 35px;margin-right: -1px;padding-top: 15px;padding-bottom: 10px;"></td>';
-	echo'<td style="padding-left: 35px;margin-right: -1px;padding-top: 15px;padding-bottom: 10px;">ID</td>';
-	echo'<td style="padding-left: 35px;margin-right: -1px;padding-top: 15px;padding-bottom: 10px;">Name</td>';
-	echo'<td  style="padding-left: 35px;margin-right: -1px; width: 43%;padding-top: 19px;padding-bottom: 10px;">Status</td>';
+	?>
+	<div style="height:500px;width:800px;">
+	<table cellpadding="3px" style="border:1px solid;border: 1px solid;border-color: lightgrey;width: 99%;;height:100px;">
+<tr style="background-color: #367fa9;font-size: 22px;font-family: cursive;color-rendering: optimizeQuality;color: #fff;">
+	<td style="padding-left: 35px;margin-right: -1px;padding-top: 15px;padding-bottom: 10px;"></td>
+	<td style="padding-left: 35px;margin-right: -1px;padding-top: 15px;padding-bottom: 10px;">ID</td>
+	<td style="padding-left: 35px;margin-right: -1px;padding-top: 15px;padding-bottom: 10px;">Name</td>
+	<td  style="padding-left: 35px;margin-right: -1px; width: 43%;padding-top: 19px;padding-bottom: 10px;">Status</td>
 	
-	echo'</tr>';
-	
+	</tr>
+	<?php
 	for($i=0;$i<$num;$i++)
 	{
 	?>
 	
 	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-	<?php
-	echo'<tr style="background-color: ghostwhite;">';
-	echo'<td style="padding: 0px 16px;font-size: 16px;padding-right: 52px;font-family: sans-serif;color: #367fa9;">';
-    echo'<input type="hidden" name="s[]" value="'.$id[$i].'">';
-	echo'</td>';
-	echo'<td style="padding: 10px 37px;font-size: 16px;font-family: sans-serif;color: #367fa9;">'.$id[$i].'</td>';
-	echo'<td style="padding: 10px 37px;font-size: 16px;font-family: sans-serif;color: #367fa9;">'.$visname[$i].'</td>';
 	
-	//echo'<td style="padding: 10px 37px;font-size: 16px;font-family: sans-serif;color: lightsteelblue;">'.$role[$i].'</td>';
-	echo'<td>';
-	?>
+	<tr style="background-color: ghostwhite;">
+	<td style="padding: 0px 16px;font-size: 16px;padding-right: 52px;font-family: sans-serif;color: #367fa9;">
+   <input type="hidden" name="s[]" value="<?php  '.$id[$i].'; ?>">
+	</td>
+	<td style="padding: 10px 37px;font-size: 16px;font-family: sans-serif;color: #367fa9;"><?php  echo $id[$i]; ?></td>
+	<td style="padding: 10px 37px;font-size: 16px;font-family: sans-serif;color: #367fa9;"><?php echo $visname[$i]; ?></td>
 	
-	<select name="s[]" onchange="this.form.submit()" style="  margin-left: 31px;">
+	
+	<td>
+
+	
+	<select name="s[]" onchange="this.form.submit()">
 	<option <?php if($status[$i]=='active'){echo "selected=selected";} ?> value="active">active</option>
 	<option <?php if($status[$i]=='inactive'){echo "selected=selected";} ?> value="inactive">inactive</option>
 	
@@ -389,11 +393,11 @@ $paginate.= "</div>";
                     type: "success", //alert | success | error | warning | info
                     title: "Success",
 					position: {
-                        x: "right", //right | left | center
-                        y: "top" //top | bottom | center
+                        x: "center", //right | left | center
+                        y: "center" //top | bottom | center
                     },
                     icon: '<img src="images/paper_plane.png" />',
-                    message: "Report status has been modified ."
+                    message: "jQuery Notify.js Demo. Super simple Notify plugin."
                 });
            });
 		   });
